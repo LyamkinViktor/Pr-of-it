@@ -1,7 +1,7 @@
 <?php
 
 function getUsersList() {
-    return ['admin' => '$2y$10$Yc0bzu/omrO3A0LRKI3yUe8Gw7Mq53m97z4WLEXhB/xBQrY/QspS.',
+    return [//'admin' => '$2y$10$Yc0bzu/omrO3A0LRKI3yUe8Gw7Mq53m97z4WLEXhB/xBQrY/QspS.',
             'user1' => '$2y$10$btLtycGga7cagAcolc43duCuUsTJyXxTEmiz51Cji0jYSeEmDQ4/q',
             'user2' => '$2y$10$Jrr5fzT3lObyynzDfUygaOnG5dZeToT4QBruIxBoNKiFHj34Bjf2C'
         ];
