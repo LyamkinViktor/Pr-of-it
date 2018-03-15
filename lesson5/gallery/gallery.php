@@ -34,7 +34,7 @@ foreach ($pictures as $key => $pic) {
 if (isset($_SESSION['login'])) {
     $login = $_SESSION['login'];
 } else {
-	$login = null;
+    $login = null;
 }
 
 if (null != getCurrentUser($login)) {
