@@ -1,4 +1,5 @@
 <?php session_start();
+include __DIR__ . '/functions.php';
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -28,12 +29,21 @@ foreach ($pictures as $key => $pic) {
 <?php }
 }?>
 
+<?php
+
+if (isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
+} else $login = null;
+
+if (null != getCurrentUser($login)) {
+?>
 <div>
     <form action="/lesson5/gallery/upload.php" method="post" enctype="multipart/form-data">
         <input type="file" name="picture">
         <button type="submit">Отправить</button>
     </form>
 </div>
+<?php } ?>
 
 </body>
 </html>
