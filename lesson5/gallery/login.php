@@ -14,6 +14,7 @@ if (isset($_POST['login'], $_POST['password'])) {
 if (true == checkPassword($login, $password)) {
     $_SESSION['login'] = $login;
     header('Location: /lesson5/gallery/gallery.php');
+    exit;
 }
 
 if (null == getCurrentUser($login)) {?>
