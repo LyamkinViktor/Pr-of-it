@@ -24,11 +24,5 @@
             <p><button type="submit">Отправить</button></p>
         </form>
     </div>
-
-
-
-    </body>
-
-
-
+</body>
 </html>
