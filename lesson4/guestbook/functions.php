@@ -5,5 +5,4 @@ function getData() {
         return file(__DIR__ . '/db.txt');
     }
     return null;
-
 }
