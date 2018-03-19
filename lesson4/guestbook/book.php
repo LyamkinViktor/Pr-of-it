@@ -8,14 +8,15 @@
 </head>
 <body>
 
-    <div>
-        <?php
-        $data = getData();
+   <div>
+       <?php
+       $data = getData();
 
-        foreach ($data as $str) {
-            echo $str; ?> <br> <?php
-        };?>
-    </div>
+       foreach ($data as $str) {
+           echo $str; ?> <br> <?php
+       };
+       ?>
+   </div>
 
     <div>
         <form action="/lesson4/guestbook/add.php" method="post">
