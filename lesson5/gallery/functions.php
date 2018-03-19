@@ -10,15 +10,14 @@ function getUsersList() {
 
 
 function existsUser($login) {
-    $userList = getUsersList();
-    if (isset($userList[$login])) {
+    if (isset(getUsersList()[$login])) {
         return true;
     }
     return false;
 }
 
 function checkPassword($login, $password) {
-    if (true == existsUser($login)) {
+    if (existsUser($login)) {
         $users = getUsersList();
         return password_verify($password , $users[$login]);
     }

@@ -14,18 +14,20 @@ $mimeTypes = ['image/jpeg', 'image/png'];
 $login = $_SESSION['login'];
 
 if (isset($_FILES['picture'])) {
-    if (0 == $_FILES['picture']['error'] && null != getCurrentUser($login)) {
-        if (true == in_array($_FILES['picture']['type'], $mimeTypes)) {
-            move_uploaded_file($_FILES['picture']['tmp_name'],
-                __DIR__ . '/images/' . $_FILES['picture']['name']);
-            $log = getCurrentUser($login) . '-' . date("m.d.y") . '-' . $_FILES['picture']['name'];
-            file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND);
-            echo 'Файл успешно загружен!';
-        } else {
-            echo 'Формат не поддерживается!';
-        }
-    } else {
+    if (null == getCurrentUser($login)){
         echo 'Вы не авторизованы';
+    } else {
+        if (0 == $_FILES['picture']['error']) {
+            if (true == in_array($_FILES['picture']['type'], $mimeTypes)) {
+                move_uploaded_file($_FILES['picture']['tmp_name'],
+                    __DIR__ . '/images/' . $_FILES['picture']['name']);
+                $log = getCurrentUser($login) . '-' . date("m.d.y") . '-' . $_FILES['picture']['name'];
+                file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND);
+                echo 'Файл успешно загружен!';
+            } else {
+                echo 'Формат не поддерживается!';
+            }
+        }
     }
 }?>
 
