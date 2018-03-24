@@ -24,8 +24,8 @@ function checkPassword($login, $password) {
     return false;
 }
 
-function getCurrentUser($login) {
-    if (isset($_SESSION['login']) && true == existsUser($login)) {
+function getCurrentUser() {
+    if (isset($_SESSION['login']) && true == existsUser($_SESSION['login'])) {
         return $_SESSION['login'];
     }
     return null;

@@ -1,15 +1,15 @@
 <?php session_start();
 require_once __DIR__ . '/functions.php';
 
-$login = null;
-$password = null;
-
 if (isset($_POST['login'], $_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
+} else {
+    $login = null;
+    $password = null;
 }
 
-if (null != getCurrentUser($login)) {
+if (null != getCurrentUser()) {
     header('Location: /lesson5/gallery/gallery.php');
     exit;
 }
@@ -20,7 +20,7 @@ if (true == checkPassword($login, $password)) {
     exit;
 }
 
-if (null == getCurrentUser($login)) {?>
+if (null == getCurrentUser()) { ?>
     <!doctype html>
     <html lang="en">
     <head>
@@ -42,4 +42,4 @@ if (null == getCurrentUser($login)) {?>
     </form>
     </body>
     </html>
-<?php }?>
+<?php } ?>
