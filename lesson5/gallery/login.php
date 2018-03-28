@@ -1,12 +1,10 @@
 <?php session_start();
 require_once __DIR__ . '/functions.php';
 
-if (isset($_POST['login'], $_POST['password'])) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-} else {
-    $login = null;
-    $password = null;
+if (true == checkPassword($login, $password)) {
+    $_SESSION['login'] = $login;
+    header('Location: /lesson5/gallery/gallery.php');
+    exit;
 }
 
 if (null != getCurrentUser()) {
@@ -14,10 +12,12 @@ if (null != getCurrentUser()) {
     exit;
 }
 
-if (true == checkPassword($login, $password)) {
-    $_SESSION['login'] = $login;
-    header('Location: /lesson5/gallery/gallery.php');
-    exit;
+$login = null;
+$password = null;
+
+if (isset($_POST['login'], $_POST['password'])) {
+    $login = $_POST['login'];
+    $password = $_POST['password'];
 }
 
 if (null == getCurrentUser()) { ?>
