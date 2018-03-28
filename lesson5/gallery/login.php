@@ -12,8 +12,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         header('Location: /lesson5/gallery/gallery.php');
         exit;
     }
-}
-?>
+} ?>
 
 <!doctype html>
 <html lang="en">
