@@ -11,11 +11,9 @@
    <div>
        <?php
        $data = getData();
-
        foreach ($data as $str) {
-           echo $str; ?> <br> <?php
-       };
-       ?>
+           echo $str; ?><br><?php
+       }; ?>
    </div>
 
     <div>
