@@ -6,18 +6,12 @@ if (null != getCurrentUser()) {
     exit;
 }
 
-$login = null;
-$password = null;
-
-if (isset($_POST['login'], $_POST['password'])) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-}
-
-if (true == checkPassword($login, $password)) {
-    $_SESSION['login'] = $login;
-    header('Location: /lesson5/gallery/gallery.php');
-    exit;
+if (isset($_POST['login']) && isset($_POST['password'])) {
+    if (true == checkPassword($_POST['login'], $_POST['password'])) {
+        $_SESSION['login'] = $_POST['login'];
+        header('Location: /lesson5/gallery/gallery.php');
+        exit;
+    }
 }
 
 if (null == getCurrentUser()) { ?>
