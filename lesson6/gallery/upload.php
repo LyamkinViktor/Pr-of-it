@@ -11,19 +11,25 @@ require __DIR__ . '/classes/Uploader.php';
 <body>
 <?php
 
-$mimeTypes = ['image/jpeg', 'image/png'];
-
-$login = $_SESSION['login'];
-
-$picture = $_FILES['picture'];
+if (isset($_SESSION['login'])) {
+    $login = $_SESSION['login'];
+}
 
 if (null == getCurrentUser($login)){
     echo 'Вы не авторизованы';
     } else {
-    if (0 == $_FILES['picture']['error']) {
-        if (true == in_array($_FILES['picture']['type'], $mimeTypes)) {
-            new Uploader($picture);
-            $log = getCurrentUser($login) . '-' . date("m.d.y") . '-' . $_FILES['picture']['name'];
+
+    $uploading = new Uploader($_FILES['picture']);
+    $uploading->isUploaded();
+
+    if (0 == $uploading->picture['error']) {
+
+        $mimeTypes = ['image/jpeg', 'image/png'];
+        if (true == in_array($uploading->picture['type'], $mimeTypes)) {
+
+            $uploading->upload();
+
+            $log = getCurrentUser($login) . '-' . date("m.d.y") . '-' . $uploading->picture['name'];
             file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND);
             echo 'Файл успешно загружен!';
         } else {

@@ -2,20 +2,18 @@
 
 class TextFile
 {
-    protected $path;
+    public $path;
     protected $content;
 
     public function __construct($path)
     {
         $this->path = $path;
-        $this->content = $this->getData();
+        $this->content = file($path, FILE_IGNORE_NEW_LINES);
     }
 
     public function getData()
     {
-        if (file_exists($this->path)) {
-            return file($this->path);
-        }
-        return null;
+        return $this->content;
     }
+
 }

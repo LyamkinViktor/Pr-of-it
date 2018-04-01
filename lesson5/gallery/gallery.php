@@ -31,13 +31,7 @@ foreach ($pictures as $key => $pic) {
 
 <?php
 
-if (isset($_SESSION['login'])) {
-    $login = $_SESSION['login'];
-} else {
-    $login = null;
-}
-
-if (null != getCurrentUser($login)) {
+if (null != getCurrentUser()) {
 ?>
 <div>
     <form action="/lesson5/gallery/upload.php" method="post" enctype="multipart/form-data">

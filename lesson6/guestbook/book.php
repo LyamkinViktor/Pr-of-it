@@ -1,6 +1,4 @@
-<?
-require __DIR__ . '/classes/GuestBook.php';
-?>
+<?php require_once __DIR__ . '/classes/GuestBook.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -10,18 +8,21 @@ require __DIR__ . '/classes/GuestBook.php';
 </head>
 <body>
 
-   <div>
-       <?php
-       $book = new GuestBook(__DIR__ . '/db.txt');
+<?php
 
-       foreach ($book->getData() as $str) {
-           echo $str; ?> <br> <?php
-       };
-       ?>
-   </div>
+$guestBook = new GuestBook(__DIR__ . '/db.txt');
+if (isset($_POST['text'])) {
+    $text = $_POST['text'];
+    $guestBook->append($text)->save();
+}
+
+foreach ($guestBook->getData() as $string) {
+    echo $string; ?> <br> <?php
+}
+?>
 
     <div>
-        <form action="/lesson6/guestbook/add.php" method="post">
+        <form action="/lesson6/guestbook/book.php" method="post">
             <p><textarea name="text"></textarea></p>
             <p><button type="submit">Отправить</button></p>
         </form>

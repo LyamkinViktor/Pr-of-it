@@ -2,23 +2,27 @@
 
 class Uploader
 {
+    public $picture;
+
     public function __construct($picture)
     {
-        if ($this->isUploaded() != null) {
-            $this->upload();
-        }
+        $this->picture = $picture;
     }
 
-    function isUploaded()
+    public function isUploaded()
     {
-        if (isset($picture)) {
-            return $picture;
+        if (isset($this->picture)) {
+            return $this->picture;
         }
         return null;
     }
 
-    function upload()
+    public function upload()
     {
-        move_uploaded_file($_FILES['picture']['tmp_name'], __DIR__ . '/../images/' . $_FILES['picture']['name']);
+        if ($this->isUploaded() != null) {
+            move_uploaded_file
+            ($this->picture['tmp_name'], __DIR__ . '/../images/' . $this->picture['name']);
+        }
+
     }
 }
