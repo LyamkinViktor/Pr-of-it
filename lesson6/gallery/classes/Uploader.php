@@ -2,14 +2,14 @@
 
 class Uploader
 {
-    public $picture; //создаём атрибут класса Uploader - изображение
+    public $picture;
 
     public function __construct($picture)
     {
-        $this->picture = $picture; // присваиваем атрибуту класса передаваемый аргумент
+        $this->picture = $picture;
     }
 
-    public function isUploaded() // проверяем был ли загружен файл от данного имени поля
+    public function isUploaded()
     {
         if (isset($this->picture)) {
             return $this->picture;
@@ -17,7 +17,7 @@ class Uploader
         return null;
     }
 
-    public function upload() // записываем изображение в папку images с его исходным именем
+    public function upload()
     {
         if ($this->isUploaded() != null) {
             move_uploaded_file

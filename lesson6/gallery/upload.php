@@ -12,21 +12,20 @@ require __DIR__ . '/classes/Uploader.php';
 <?php
 
 if (null == getCurrentUser()){
-    echo 'Вы не авторизованы'; // сразу проверяем существует ли сессия и такой пользователь в базе
+    echo 'Вы не авторизованы';
     } else {
 
-    $uploading = new Uploader($_FILES['picture']); // создаем новый объект загрузчик, передаем ему аргумент
-    $uploading->isUploaded(); // проверяем был ли загружен файл от данного имени поля
+    $uploading = new Uploader($_FILES['picture']);
+    $uploading->isUploaded();
 
-    if (0 == $uploading->picture['error']) { // проеряем на наличие ошибок
+    if (0 == $uploading->picture['error']) {
 
-        $mimeTypes = ['image/jpeg', 'image/png']; // задаём массив типов
-        if (true == in_array($uploading->picture['type'], $mimeTypes)) { // сверяем на наличие переданный тип
+        $mimeTypes = ['image/jpeg', 'image/png'];
+        if (true == in_array($uploading->picture['type'], $mimeTypes)) {
+            $uploading->upload();
 
-            $uploading->upload(); // загружаем файл
-
-            $log = getCurrentUser() . '-' . date("m.d.y") . '-' . $uploading->picture['name']; //создаём лог
-            file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND); // записываем лог в файл
+            $log = getCurrentUser() . '-' . date("m.d.y") . '-' . $uploading->picture['name'];
+            file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND);
             echo 'Файл успешно загружен!';
         } else {
             echo 'Формат не поддерживается!';
