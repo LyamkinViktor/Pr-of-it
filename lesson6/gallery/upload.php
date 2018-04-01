@@ -11,26 +11,22 @@ require __DIR__ . '/classes/Uploader.php';
 <body>
 <?php
 
-if (isset($_SESSION['login'])) {
-    $login = $_SESSION['login'];
-}
-
-if (null == getCurrentUser($login)){
-    echo 'Вы не авторизованы';
+if (null == getCurrentUser()){
+    echo 'Вы не авторизованы'; // сразу проверяем существует ли сессия и такой пользователь в базе
     } else {
 
-    $uploading = new Uploader($_FILES['picture']);
-    $uploading->isUploaded();
+    $uploading = new Uploader($_FILES['picture']); // создаем новый объект загрузчик, передаем ему аргумент
+    $uploading->isUploaded(); // проверяем был ли загружен файл от данного имени поля
 
-    if (0 == $uploading->picture['error']) {
+    if (0 == $uploading->picture['error']) { // проеряем на наличие ошибок
 
-        $mimeTypes = ['image/jpeg', 'image/png'];
-        if (true == in_array($uploading->picture['type'], $mimeTypes)) {
+        $mimeTypes = ['image/jpeg', 'image/png']; // задаём массив типов
+        if (true == in_array($uploading->picture['type'], $mimeTypes)) { // сверяем на наличие переданный тип
 
-            $uploading->upload();
+            $uploading->upload(); // загружаем файл
 
-            $log = getCurrentUser($login) . '-' . date("m.d.y") . '-' . $uploading->picture['name'];
-            file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND);
+            $log = getCurrentUser() . '-' . date("m.d.y") . '-' . $uploading->picture['name']; //создаём лог
+            file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND); // записываем лог в файл
             echo 'Файл успешно загружен!';
         } else {
             echo 'Формат не поддерживается!';
