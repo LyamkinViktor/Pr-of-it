@@ -20,17 +20,16 @@ include __DIR__ . '/functions.php';
 $pictures = include __DIR__ . '/data.php';
 
 foreach ($pictures as $key => $pic) {
-    if ($pic != '.' && $pic != '..') {?>
+    if ($pic != '.' && $pic != '..') { ?>
     <div>
         <a href="/lesson6/gallery/fullsize.php?id=<?php echo $key; ?>">
             <img src="/lesson6/gallery/images/<?php echo $pic; ?>">
         </a>
     </div>
 <?php }
-}?>
+} ?>
 
 <?php
-
 if (null != getCurrentUser()) {
 ?>
 <div>

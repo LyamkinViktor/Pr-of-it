@@ -6,11 +6,11 @@ require __DIR__ . '/classes/Uploader.php';
 if (null == getCurrentUser()){
     exit('Вы не авторизованы!');
     } else {
-    $uploading = new Uploader($_FILES['picture']);
+    $uploading = new Uploader('picture');
     if ($uploading->upload() != false) {
-        $log = getCurrentUser() . '-' . date("m.d.y") . '-' . $uploading->picture['name'];
+        $log = getCurrentUser() . '-' . date("m.d.y") . '-' . $uploading->file['name'];
         file_put_contents(__DIR__ . '/log.txt', $log . "\n", FILE_APPEND);
         header('Location: /lesson6/gallery/gallery.php');
     }
-    echo 'не загружено';
+    exit('Не загружено');
 }

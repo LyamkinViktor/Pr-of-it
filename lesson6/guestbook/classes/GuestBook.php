@@ -19,5 +19,4 @@ class GuestBook extends TextFile
         file_put_contents($this->path, $data);
         return $this;
     }
-
 }
