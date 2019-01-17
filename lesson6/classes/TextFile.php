@@ -8,6 +8,7 @@ class TextFile
     public function __construct($path)
     {
         $this->path = $path;
+
         $this->content = file($path, FILE_IGNORE_NEW_LINES);
     }
 
@@ -15,5 +16,4 @@ class TextFile
     {
         return $this->content;
     }
-
 }

@@ -1,3 +1,3 @@
 <?php
 
-return scandir(__DIR__ . '/images');
+return scandir(__DIR__ . '/img');

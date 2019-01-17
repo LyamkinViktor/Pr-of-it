@@ -1,8 +1,9 @@
 <?php
-require_once __DIR__ . '/classes/GuestBook.php';
+require_once __DIR__ . '/../classes/GuestBook.php';
 
-$guestBook = new GuestBook(__DIR__ . '/db.txt');
+$path = __DIR__ . '/data.txt';
+$guestBook = new GuestBook($path);
+$text = $_POST['message'];
+$guestBook->append($text)->save();
 
-$guestBook->append($_POST['text'])->save();
-
-header('Location: /lesson6/guestbook/book.php');
+header('Location: http://php-1/guestbook/book.php');
